@@ -1,0 +1,45 @@
+generated: '2026-07-21'
+method: searched
+source: >-
+  https://github.com/walksource/roomstorm-api (apiary.apib) + live
+  https://www.roomstorm.com/backend/v1/bootstrap/
+authentication:
+  style: jwt-bearer-or-session-cookie
+  token_endpoint: https://www.roomstorm.com/backend/v1/auth/
+  detail: See authentication/roomstorm-authentication.yml
+versioning:
+  scheme: uri-path
+  current: v1
+  base: https://www.roomstorm.com/backend/v1/
+pagination:
+  style: page-number
+  params:
+    - page        # page number
+    - page_size   # opt-in; pagination is enabled by supplying page_size
+  response_headers:
+    - X-Total-Count   # total number of items in the collection
+    - Link            # RFC 5988 rel="next" / rel="prev" navigation links
+  notes: >-
+    Most collection endpoints support pagination, turned on by specifying the page_size
+    query param. The response includes X-Total-Count and a Link header carrying next/prev
+    URLs, e.g. <.../users/?page=3&page_size=2; rel="next">, <.../users/?page_size=2; rel="prev">.
+discovery:
+  bootstrap_endpoint: https://www.roomstorm.com/backend/v1/bootstrap/
+  notes: >-
+    A live bootstrap endpoint returns the usable endpoint map, the logged-in user (or null),
+    server time, available currencies (AUD/CAD/USD, default USD), and the airline list.
+error_envelope:
+  format: drf
+  detail: See errors/roomstorm-problem-types.yml
+  shape: '{"detail": "..."} for auth/generic; {field: [messages]} for validation.'
+filtering:
+  notes: >-
+    Collection endpoints (bookings, sold-rooms) expose rich query filters: date ranges
+    (start_date/end_date/created_after/created_before), seller_hotel, hotel_city (case-
+    insensitive), buyer airport, free_text, agent_name, sort_by/sort_order, and a csv
+    flag for export.
+idempotency:
+  supported: false
+  notes: No idempotency-key mechanism is documented.
+rate_limiting:
+  documented: false

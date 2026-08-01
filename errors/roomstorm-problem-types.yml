@@ -1,0 +1,36 @@
+generated: '2026-07-21'
+method: derived
+source: >-
+  Derived from api-blueprint/roomstorm-apiary.apib responses and observed live behavior
+  of https://www.roomstorm.com/backend/v1/ (Django REST framework default error envelope).
+format: drf
+envelope:
+  description: >-
+    Django REST framework returns errors as a JSON object. Authentication/permission and
+    generic errors use a single `detail` string; field-validation errors return an object
+    keyed by field name with an array of messages.
+  fields:
+    - detail   # human-readable error message for auth/permission/generic errors
+problems:
+  - status: 400
+    title: Bad Request
+    description: Malformed request or failed field validation (per-field messages).
+  - status: 401
+    title: Unauthorized
+    description: Invalid or expired credentials / JWT.
+  - status: 403
+    title: Forbidden
+    detail: Authentication credentials were not provided.
+    description: >-
+      Returned by protected collection endpoints (e.g. /hotels/, /bookings/) when no
+      valid JWT or session cookie is supplied. Verified live 2026-07-21.
+    evidence: 'GET https://www.roomstorm.com/backend/v1/hotels/ -> 403 {"detail":"Authentication credentials were not provided."}'
+  - status: 404
+    title: Not Found
+    description: Resource or collection item does not exist.
+  - status: 405
+    title: Method Not Allowed
+    description: HTTP method not supported on this endpoint.
+  - status: 500
+    title: Internal Server Error
+    description: Unhandled server-side error.

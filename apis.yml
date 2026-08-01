@@ -1,7 +1,28 @@
 aid: roomstorm
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/roomstorm.png
 name: Roomstorm
-description: Roomstorm is a company surfaced as a portfolio company of y-combinator and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Roomstorm is a real-time B2B hotel room marketplace, best known for building the
+  airline industry's first fully automated platform for providing hotel accommodations
+  to distressed passengers during flight disruptions. Founded by Maksim Izmaylov and
+  backed by Y Combinator (Summer 2014), the San Francisco company connects airlines,
+  hotels, and travelers so that irregular-operations (IROPS) rebooking, room sourcing,
+  invoicing, and voucher issuance happen programmatically instead of through manual
+  phone calls. Its backend exposes a JSON REST API (documented in API Blueprint)
+  covering authentication, bookings, hotels, rooms, vacancies, organizations, vouchers,
+  and airport search.
 url: https://raw.githubusercontent.com/api-evangelist/roomstorm/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,12 +32,56 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
-apis: []
+- Travel
+- Hospitality
+- Hotels
+- Airlines
+- Marketplace
+- Bookings
+- Y Combinator
+apis:
+- name: Roomstorm API
+  description: >-
+    Roomstorm's B2B hotel-room marketplace REST API (Django REST framework backend).
+    Documented in API Blueprint, it covers a bootstrap discovery endpoint, JWT
+    username/password authentication, hotel search by geo/airport, vacancy and room
+    pricing, bookings and sold-rooms, organizations, vouchers, and guest/airline buy
+    flows. Collection endpoints support page_size pagination via X-Total-Count and
+    Link headers.
+  humanURL: https://github.com/walksource/roomstorm-api
+  baseURL: https://www.roomstorm.com/backend/v1/
+  properties:
+  - type: API Blueprint
+    url: api-blueprint/roomstorm-apiary.apib
+  - type: APIReference
+    url: https://www.roomstorm.com/backend/v1/bootstrap/
+  - type: Authentication
+    url: authentication/roomstorm-authentication.yml
+  - type: ErrorCatalog
+    url: errors/roomstorm-problem-types.yml
+  - type: Conventions
+    url: conventions/roomstorm-conventions.yml
+common:
+- type: DomainSecurity
+  url: security/roomstorm-domain-security.yml
+- type: Website
+  url: https://www.roomstorm.com/
+- type: GitHubOrganization
+  url: https://github.com/walksource
+- type: SourceCode
+  url: https://github.com/walksource/roomstorm-api
+- type: LLMsTxt
+  url: llms/roomstorm-llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 6
+  pass: local-v1

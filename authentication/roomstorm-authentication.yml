@@ -1,0 +1,35 @@
+generated: '2026-07-21'
+method: searched
+source: >-
+  https://github.com/walksource/roomstorm-api (apiary.apib) + live behavior of
+  https://www.roomstorm.com/backend/v1/ (Django REST framework; 403 "Authentication
+  credentials were not provided" on protected collections)
+summary:
+  types: [http, cookie]
+  api_key_in: []
+  oauth2_flows: []
+  notes: >-
+    JWT bearer token obtained via username/password. POST /backend/v1/auth/ validates
+    credentials and returns a JWT (`token` + `expires` + `payload`) alongside a session
+    cookie (`sessionid`) and a CSRF cookie (`csrftoken`). Subsequent API calls
+    authenticate with either the JWT or the session cookie. No OAuth2 / API-key surface
+    is published. A separate guest/account web login lives at /backend/accounts/login/.
+schemes:
+- name: jwtAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: >-
+    JSON Web Token issued by POST /backend/v1/auth/ (username/password). Token carries
+    a payload with username, user_id, email, orig_iat, exp; `expires` returned
+    alongside. Present as an Authorization bearer header on protected endpoints.
+  token_endpoint: https://www.roomstorm.com/backend/v1/auth/
+  sources: [api-blueprint/roomstorm-apiary.apib]
+- name: sessionAuth
+  type: apiKey
+  in: cookie
+  parameter_name: sessionid
+  description: >-
+    Django session cookie set by the auth endpoint (httponly), paired with a csrftoken
+    cookie for unsafe methods. Used by the first-party web/guest app.
+  sources: [api-blueprint/roomstorm-apiary.apib]

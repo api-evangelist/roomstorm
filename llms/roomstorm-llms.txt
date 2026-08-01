@@ -1,0 +1,22 @@
+# Roomstorm
+
+> Roomstorm is a real-time B2B hotel room marketplace, best known for building the airline industry's first fully automated platform for providing hotel accommodations to distressed passengers during flight disruptions (IROPS). Backed by Y Combinator (S2014). Its Django REST backend exposes a live JSON API at https://www.roomstorm.com/backend/v1/ covering authentication, hotels, vacancies, rooms, bookings, organizations, vouchers, and airport search.
+
+## APIs
+- [Roomstorm API (source / API Blueprint)](https://github.com/walksource/roomstorm-api): B2B hotel-room marketplace REST API documented in API Blueprint.
+- [Bootstrap discovery endpoint](https://www.roomstorm.com/backend/v1/bootstrap/): Live endpoint map, current user, server time, currencies, and airline list.
+- [Authenticate](https://www.roomstorm.com/backend/v1/auth/): POST username/password to obtain a JWT + session cookie.
+
+## Specs
+- [API Blueprint spec](api-blueprint/roomstorm-apiary.apib): Full apiary.apib covering bootstrap, auth, bookings, hotels, rooms, vacancies, organizations, vouchers, airport search, and buy/guestbuy flows.
+
+## Artifacts
+- [Authentication profile](authentication/roomstorm-authentication.yml): JWT bearer (via /auth/) plus Django session cookie.
+- [Error catalog](errors/roomstorm-problem-types.yml): DRF error envelope and status codes.
+- [Conventions](conventions/roomstorm-conventions.yml): page_size pagination (X-Total-Count + Link headers), uri-path v1 versioning, error envelope, filtering.
+- [Domain security](security/roomstorm-domain-security.yml): TLS/HSTS/DNS posture probe.
+
+## Company
+- [Website](https://www.roomstorm.com/)
+- [GitHub organization](https://github.com/walksource)
+- [Y Combinator profile](https://www.ycombinator.com/companies/roomstorm)
