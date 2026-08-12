@@ -65,6 +65,9 @@ apis:
   - type: Conventions
     url: conventions/roomstorm-conventions.yml
 common:
+- type: License
+  name: MIT
+  url: https://github.com/walksource/roomstorm-api/blob/master/LICENSE
 - type: DomainSecurity
   url: security/roomstorm-domain-security.yml
 - type: Website
