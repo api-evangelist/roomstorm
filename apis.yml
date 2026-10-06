@@ -45,7 +45,7 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-07-21'
+modified: '2026-10-06'
 tags:
 - Company
 - Travel
@@ -87,6 +87,8 @@ apis:
   - type: Conventions
     url: conventions/roomstorm-conventions.yml
 common:
+- url: https://www.roomstorm.com/blog/
+  type: Blog
 - type: IssueTracker
   url: https://github.com/walksource/roomstorm-api/issues
 - type: License
